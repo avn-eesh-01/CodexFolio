@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFolio | Modern Developer Portfolio Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body class="logged-in">
+    <!-- Post-Login Homepage starts here -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Dev<span>Folio</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#templates">Templates</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <div class="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                    <label class="switch" for="darkModeToggle">
+                        <input type="checkbox" id="darkModeToggle" checked aria-label="Toggle dark mode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar" onclick="toggleProfileMenu()">
+                        <img src="https://placehold.co/40x40/1e293b/4cc9f0" alt="User Avatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="profile-menu">
+                        <ul>
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Showcase Your Code & Career</h1>
+                <p>Build a stunning developer portfolio in minutes, not days. Connect your GitHub and LinkedIn profiles to automatically generate a personalized portfolio website.</p>
+                <div class="cta-buttons">
+                    <button class="btn-connect linkedin"><i class="fab fa-linkedin"></i> Connect LinkedIn</button>
+                    <button class="btn-connect github"><i class="fab fa-github"></i> Connect GitHub</button>
+                </div>
+                
+            </div>
+            <div class="hero-image">
+                <img src="media/ad02120ba7161dcaed70b45b17b6dbb0.jpg" alt="Portfolio Generator" />
+                <div class="floating-card card-1">
+                    <i class="fas fa-code"></i>
+                    <span>Developer-Focused</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-bolt"></i>
+                    <span>One-Click Deploy</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google OAuth</h3>
+                    <p>Secure and simple login with your Google account - no password needed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Auto-Import</h3>
+                    <p>Automatically pull your projects from GitHub and career details from LinkedIn.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Dark Mode</h3>
+                    <p>All templates support both light and dark modes to showcase your work beautifully.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Your portfolio will look perfect on all devices, from desktops to smartphones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Login with Google</h3>
+                        <p>Securely log in with your Google account in just one click. No need to create a new account or remember another password.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Connect Your Accounts</h3>
+                        <p>Link your GitHub and LinkedIn profiles to automatically import your projects, skills, and professional experience.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Choose a Template</h3>
+                        <p>Select from our modern, developer-focused templates designed to showcase your technical skills and projects.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Publish or Export</h3>
+                        <p>Deploy your portfolio with one click to your own custom domain, or export the code to your GitHub repository.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="templates" class="templates">
+            <h2 class="section-title">Premium Templates</h2>
+            <div class="template-slider">
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="https://placehold.co/300x200/1e293b/4cc9f0" alt="Developer Template" />
+                    </div>
+                    <h3>Developer</h3>
+                    <p>Code-focused design with syntax highlighting and GitHub stats integration.</p>
+                    <button class="btn-secondary">Preview</button>
+                </div>
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="https://placehold.co/300x200/1e293b/4895ef" alt="Minimal Template" />
+                    </div>
+                    <h3>Minimal</h3>
+                    <p>Clean and elegant design highlighting your skills and achievements.</p>
+                    <button class="btn-secondary">Preview</button>
+                </div>
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="https://placehold.co/300x200/1e293b/3a0ca3" alt="Creative Template" />
+                    </div>
+                    <h3>Creative</h3>
+                    <p>Unique layout with interactive elements to showcase your creative projects.</p>
+                    <button class="btn-secondary">Preview</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Launch Your Developer Portfolio Today</h2>
+                <p>Join thousands of tech students and professionals who have boosted their online presence with DevFolio.</p>
+                <button class="btn-primary start-building"><i class="fas fa-rocket"></i> Start Building</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>Dev<span>Folio</span></h2>
+                <p>The modern portfolio builder for developers and tech students.</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Designed and Developed by Avneesh</p>
+        </div>
+    </footer>
+</body>
+</html>

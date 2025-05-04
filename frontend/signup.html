@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFolio | Sign Up</title>
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="api.js" defer></script>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <div class="animated-background">
+        <div class="gradient-overlay"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <!-- 3D Elements -->
+        <div class="three-d-elements">
+            <div class="cube">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+        </div>
+        
+        <div class="tech-grid">
+            <div class="grid-line horizontal-line"></div>
+            <div class="grid-line horizontal-line"></div>
+            <div class="grid-line vertical-line"></div>
+            <div class="grid-line vertical-line"></div>
+        </div>
+        
+        <div class="code-elements">
+            <div class="code-block code-1">&lt;div class="dev-profile"&gt;</div>
+            <div class="code-block code-2">const developer = new Portfolio();</div>
+        </div>
+
+        <!-- Tech illustrations -->
+        <div class="tech-illustrations">
+            <div class="illustration code-window">
+                <div class="window-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <div class="window-content">
+                    <div class="code-line"></div>
+                    <div class="code-line"></div>
+                    <div class="code-line"></div>
+                </div>
+            </div>
+            <div class="illustration device-screen">
+                <div class="device-frame"></div>
+                <div class="device-content"></div>
+            </div>
+            <div class="illustration circuit-board">
+                <div class="circuit-path path-1"></div>
+                <div class="circuit-path path-2"></div>
+                <div class="circuit-path path-3"></div>
+                <div class="circuit-node node-1"></div>
+                <div class="circuit-node node-2"></div>
+                <div class="circuit-node node-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <h1>Dev<span>Folio</span></h1>
+        </div>
+        
+        <div class="form-container">
+            <!-- <h2>Create Your Account</h2> -->
+            <p class="form-subtitle">Join the developers community and showcase your skills</p>
+            
+            <form id="signup-form" action="login.html" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="bar"></div>
+                        </div>
+                        <span class="strength-text">Password strength</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                </div>
+                
+                
+                <button type="submit" class="btn-signup">
+                    <span class="btn-content">Create Account</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </form>
+            
+            
+            <div class="auth-redirect">
+                Already have an account? <a href="login.html">Log In</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

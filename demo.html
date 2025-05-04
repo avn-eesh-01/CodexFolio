@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Customization Editor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        aside {
+            width: 300px;
+            padding: 1rem;
+            background: #f9f9f9;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        h2 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #fff;
+            border: 1px solid #ddd;
+            cursor: grab;
+        }
+
+        .section-item.dragging {
+            opacity: 0.5;
+        }
+
+        .controls>label {
+            display: block;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .controls>input {
+            width: 100%;
+            padding: 0.3rem;
+        }
+
+        button {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.6rem;
+            border: none;
+            background: #0066ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        main {
+            flex: 1;
+            border-left: 1px solid #eee;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside>
+        <h2>Customize Sections</h2>
+        <div id="sections-list">
+            <!-- Sections will be injected here -->
+        </div>
+
+        <h2>Theme Settings</h2>
+        <div class="controls">
+            <label for="primaryColor">Primary Color</label>
+            <input type="color" id="primaryColor" value="#1e40af">
+            <label for="fontFamily">Font Family</label>
+            <input type="text" id="fontFamily" value="Inter">
+        </div>
+
+        <button id="saveBtn">Save & Publish</button>
+    </aside>
+
+    <main>
+        <iframe id="previewFrame" src="/preview"></iframe>
+    </main>
+
+    <script>
+        // Default section config
+        const defaultSections = [
+            { id: 'about', name: 'About', visible: true },
+            { id: 'projects', name: 'Projects', visible: true },
+            { id: 'experience', name: 'Experience', visible: true },
+            { id: 'skills', name: 'Skills', visible: true },
+            { id: 'contact', name: 'Contact Form', visible: true }
+        ];
+
+        let sections = JSON.parse(JSON.stringify(defaultSections));
+
+        const listEl = document.getElementById('sections-list');
+        const colorInput = document.getElementById('primaryColor');
+        const fontInput = document.getElementById('fontFamily');
+        const previewFrame = document.getElementById('previewFrame');
+
+        // Render the sections list
+        function renderSections() {
+            listEl.innerHTML = '';
+            sections.forEach((sec, idx) => {
+                const item = document.createElement('div');
+                item.className = 'section-item';
+                item.draggable = true;
+                item.dataset.index = idx;
+                item.innerHTML = `
+          <span class="drag-handle">☰ ${sec.name}</span>
+          <input type="checkbox" ${sec.visible ? 'checked' : ''} data-id="${sec.id}">
+        `;
+                listEl.appendChild(item);
+            });
+            attachDragEvents();
+            attachToggleEvents();
+        }
+
+        // Drag & Drop reordering using HTML5 API
+        function attachDragEvents() {
+            let draggedIdx = null;
+            listEl.querySelectorAll('.section-item').forEach(item => {
+                item.addEventListener('dragstart', e => {
+                    draggedIdx = +item.dataset.index;
+                    item.classList.add('dragging');
+                });
+                item.addEventListener('dragend', e => {
+                    item.classList.remove('dragging');
+                    updatePreview();
+                });
+                item.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    const overIdx = +item.dataset.index;
+                    if (overIdx !== draggedIdx) {
+                        const tmp = sections.splice(draggedIdx, 1)[0];
+                        sections.splice(overIdx, 0, tmp);
+                        draggedIdx = overIdx;
+                        renderSections();
+                    }
+                });
+            });
+        }
+
+        // Toggle visibility handlers
+        function attachToggleEvents() {
+            listEl.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', e => {
+                    const id = e.target.dataset.id;
+                    sections = sections.map(s => s.id === id ? { ...s, visible: e.target.checked } : s);
+                    updatePreview();
+                });
+            });
+        }
+
+        // Push config to preview iframe via query string
+        function updatePreview() {
+            const config = encodeURIComponent(JSON.stringify({
+                sections,
+                theme: { primary: colorInput.value, font: fontInput.value }
+            }));
+            previewFrame.src = `/preview?config=${config}`;
+        }
+
+        // Save button: send to backend or trigger build
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const payload = { sections, theme: { primary: colorInput.value, font: fontInput.value } };
+            fetch('/api/save-portfolio-config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(resp => {
+                    if (resp.success) {
+                        alert('Configuration saved! Your site will rebuild shortly.');
+                    } else {
+                        alert('Error saving config.');
+                    }
+                });
+        });
+
+        // Update preview on theme change
+        colorInput.addEventListener('input', updatePreview);
+        fontInput.addEventListener('input', updatePreview);
+
+        // Initial render & preview
+        renderSections();
+        updatePreview();
+    </script>
+</body>
+
+</html>
